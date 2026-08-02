@@ -30,7 +30,7 @@ This directory contains examples and MATLAB files for constructing specific type
 - **Fractional Factorial Design:**
   - Example of construction of a fractional factorial design with a **large (if not maximum) packing radius**.
 
-- **Optimal Random Designs for Ls-Mean Quantization Error:**
+- **Random Designs with small Ls-Mean Quantization Error:**
   - Example of construction of optimal random designs for the **Ls-mean quantization error** in:
     - The **unit ball** \( B_d(0,1) \), using uniform designs in a ball \( B_d(0,R) \), or a sphere \( S_{d-1}(0,r) \) (Section 7.1.4 of [Karvonen, Pronzato and Zhigljavsky, Springer, 2026]).
     - The **cube** \([-1,1]^d\), using uniform designs in a cube \([-delta_1,delta_1]^d\), or on the vertices of a (smaller) cube \([-delta_0,delta_0]^d\) (Section 7.2 of [Karvonen, Pronzato and Zhigljavsky, Springer, 2026]).
