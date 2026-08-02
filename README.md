@@ -36,7 +36,7 @@ This directory contains examples and MATLAB files for constructing specific type
     - The **cube** \([-1,1]^d\), using uniform designs in a cube \([-delta_1,delta_1]^d\), or on the vertices of a (smaller) cube \([-delta_0,delta_0]^d\) (Section 7.2).
 
 - **Included Files:**
-  - All required `.m` files to determine the **optimal values** of \( R \), \( r \), \( A \), and \( a \) as functions of \( d \), \( n \), and \( s \).
+  - All required `.m` files to determine the **optimal values** of \( R \), \( r \), \( delta_1 \), and \( delta_0 \) as functions of \( d \), \( n \), and \( s \).
 ---
 
 ## Disclaimer
