@@ -3,9 +3,11 @@ function [ mmd2 ] = MMD2( Xn, sequence, theta,p,kernel)
 %__________________________________________________________________________
 % For Xn (d*n) an n-point design, returns 
 % mmd2 of size m = length(sequence), a row vector containing
-% the squared MMDs of the sequence of designs Xn(:,(1:i1)),...,Xn(:,(1:im)), with 
+% the squared MMDs of the empirical measures associated with the 
+% sequence of designs Xn(:,(1:i1)),...,Xn(:,(1:im)), with 
 % [i_1 ... i_m] = sequence = a vector of m consecutive integers in {1,...,n}
-% If sequence = k, mmd2 is just the squared MMD of Xn(:,(1:k))
+% The reference measure mu is uniform on [0,1]^d
+% If sequence = k, mmd2 is just the squared MMD for Xn(:,(1:k))
 % The kernel used is specified by theta,p,kernel (see calcR_switch.m)
 % The MMD is computed for the tensorised form of the kernel
 % Uses potential_energy.m, calcR_switch.m, calcrx_switch.m

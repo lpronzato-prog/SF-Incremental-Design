@@ -1,5 +1,5 @@
-% Examples of design generations in [0,1]^d
-% The design Xi is generated with Algorithm 6.i of [Karvonen, Pronzato and Zhigljavsky, 2026]
+% Examples of incremental constructions of designs in [0,1]^d
+% using the algorithms in the book [Karvonen, Pronzato and Zhigljavsky, Springer, 2026]
 
 close all
 clear variables
@@ -12,16 +12,25 @@ newpath = path; path(newpath,'design_performance')
 d=2             % dimension
 n=25            % length of the design sequence 
 
-C=11; k=2; center=1; Xcand=candidate_set( d,C,k,center,0 ); % = candidate set, with 2^C points
+C=11; k=2; center=1; Xcand=candidate_set( d,C,k,center,0 ); % = a candidate set, with 2^C points
 %--------------------------------------------------------------------------
 %--------------------------------------------------------------------------
-% Greedy packing
+% Greedy packing: --> Algorithm 6.1 (Section 6.2.1)
 [ X1,Time ] = coffee_house_adapt( Xcand, n, zeros(1,n), 1, 1);
 figure(1)
 plot([0 1 1 0 0],[0 0 1 1 0],'k-',X1(1,:),X1(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
 
 %--------------------------------------------------------------------------
-% Boundary-phobic greedy packing
+% relaxed greedy packing: --> Algorithm 6.2 (Section 6.2.2)
+    % based on [Nogalez-Gómes, Pronzato and Rendas, 2021]
+    Vd=pi^(d/2)/gamma(d/2+1); Rn=(n*Vd)^(-1/d);
+    Alpha=(1-2*Rn/sqrt(d))*ones(1,n);
+[ X2,Time ] = coffee_house_relaxed( Xcand,n,Alpha,0 );
+figure(2)
+plot([0 1 1 0 0],[0 0 1 1 0],'k-',X2(1,:),X2(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
+
+%--------------------------------------------------------------------------
+% Boundary-phobic greedy packing: --> Algorithm 6.1-BP (Section 6.2.3)
     % like in [Nogalez-Gómes, Pronzato and Rendas, 2021]
     Vd=pi^(d/2)/gamma(d/2+1); 
     beta=d/(2*(n*Vd)^(-1/d))-sqrt(d);        
@@ -34,23 +43,14 @@ figure(11)
 plot([0 1 1 0 0],[0 0 1 1 0],'k-',X1_beta(1,:),X1_beta(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
 
 %--------------------------------------------------------------------------
-% relaxed greedy packing
-    % based on [Nogalez-Gómes, Pronzato and Rendas, 2021]
-    Vd=pi^(d/2)/gamma(d/2+1); Rn=(n*Vd)^(-1/d);
-    Alpha=(1-2*Rn/sqrt(d))*ones(1,n);
-[ X2,Time ] = coffee_house_relaxed( Xcand,n,Alpha,0 );
-figure(2)
-plot([0 1 1 0 0],[0 0 1 1 0],'k-',X2(1,:),X2(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
-
-%--------------------------------------------------------------------------
-% Greedy packing with projections
+% Greedy packing with projections: --> Algorithm 6.1-PR (Section 6.2.4)
     dims=1:d; Wdim=1:d;
 [ X1_PR,Time ] = coffee_house_subspaces( Xcand, n, dims, Wdim, 0, 0);
 figure(111)
 plot([0 1 1 0 0],[0 0 1 1 0],'k-',X1_PR(1,:),X1_PR(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
 
 %--------------------------------------------------------------------------
-% Greedy energy minimization
+% Greedy energy minimization: --> Algorithm 6.3 (Section 6.3.1)
     kernel='Riesz';   
     tensorised=0;    
     corr_length=NaN; 
@@ -61,7 +61,7 @@ figure(3)
 plot([0 1 1 0 0],[0 0 1 1 0],'k-',X3(1,:),X3(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
 
 %--------------------------------------------------------------------------
-% Greedy MMD minimization
+% Greedy MMD minimization: --> Algorithm 6.4 (Section 6.3.2)
     kernel='matern32';
     tensorised=1;
     corr_length=n^(-1/d); 
@@ -72,7 +72,7 @@ figure(4)
 plot([0 1 1 0 0],[0 0 1 1 0],'k-',X4(1,:),X4(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
 
 %--------------------------------------------------------------------------
-% Greedy minimization of the double relaxation of covering
+% Greedy minimization of the double relaxation of covering: --> Algorithm 6.5 (Section 6.4.1)
     kernel='riesz';
     tensorised=0;    
     corr_length=NaN; 
@@ -85,7 +85,7 @@ figure(5)
 plot([0 1 1 0 0],[0 0 1 1 0],'k-',X5(1,:),X5(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
     
 %--------------------------------------------------------------------------
-% Greedy minimization of the Ls-mean quantization error   
+% Greedy minimization of the Ls-mean quantization error: --> Algorithm 6.6 (Section 6.4.2)   
     s=2*d;
 % simple greedy
     %[ X6,Time ] = greedy_quantization( Xcand, Xcand, n, s);    
@@ -95,7 +95,7 @@ figure(6)
 plot([0 1 1 0 0],[0 0 1 1 0],'k-',X6(1,:),X6(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
 
 %--------------------------------------------------------------------------
-% Maximum Entropy Sampling        
+% Maximum Entropy Sampling: --> Algorithm 6.7 (Section 6.5.1)        
     kernel='matern32';  
     tensorised=1;    
     corr_length=n^(-1/d); 
@@ -105,7 +105,7 @@ figure(7)
 plot([0 1 1 0 0],[0 0 1 1 0],'k-',X7(1,:),X7(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
 
 %--------------------------------------------------------------------------
-% Greedy minimization of the IMSPE
+% Greedy minimization of the IMSPE: --> Algorithm 6.8 (Section 6.5.2)
     kernel='matern32';   
     tensorised=1;    
     corr_length=n^(-1/d); 
@@ -115,7 +115,7 @@ figure(8)
 plot([0 1 1 0 0],[0 0 1 1 0],'k-',X8(1,:),X8(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
 
 %--------------------------------------------------------------------------
-% Greedy minimization of the IMSPE with spectral decomposition
+% Greedy minimization of the IMSPE with spectral decomposition: --> Algorithm 6.9 (Section 6.5.2)
     kernel='matern32';   
     tensorised=1;    
     corr_length=n^(-1/d); 
@@ -126,7 +126,7 @@ figure(9)
 plot([0 1 1 0 0],[0 0 1 1 0],'k-',X9(1,:),X9(2,:),'r.','LineWidth',2,'MarkerSize',15),  axis('square'), axis('equal'), axis off
 
 %--------------------------------------------------------------------------
-% Greedy minimization of the IMSPE based on a Bayesian Linear Model;
+% Greedy minimization of the IMSPE based on a Bayesian Linear Model: --> Algorithm 6.10 (Section 6.5.2)
     kernel='matern32';   
     tensorised=1;    
     corr_length=n^(-1/d); 
