@@ -24,7 +24,7 @@ In particular, Appendix A.6.2 of [Karvonen, Pronzato and Zhigljavsky, Springer, 
 
 ---
 
-## Directory: `high_d/`
+## Directory: `high_d`
 This directory contains examples and MATLAB files for constructing specific types of designs in high-dimensional spaces:
 
 - **Fractional Factorial Design:**
@@ -32,7 +32,7 @@ This directory contains examples and MATLAB files for constructing specific type
 
 - **Optimal Random Designs for Ls-Mean Quantization Error:**
   - Example of construction of optimal random designs for the **Ls-mean quantization error** in:
-    - The **unit ball** \( B_d(0,1) \), using uniform designs in A ball \( B_d(0,R) \), or a sphere \( S_{d-1}(0,r) \) (Section 7.1.4).
+    - The **unit ball** \( B_d(0,1) \), using uniform designs in a ball \( B_d(0,R) \), or a sphere \( S_{d-1}(0,r) \) (Section 7.1.4).
     - The **cube** \([-1,1]^d\), using uniform designs in a cube \([-delta_1,delta_1]^d\), or on the vertices of a (smaller) cube \([-delta_0,delta_0]^d\) (Section 7.2).
 
 - **Included Files:**
