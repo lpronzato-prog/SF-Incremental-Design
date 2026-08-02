@@ -6,6 +6,7 @@ This repository provides MATLAB implementations for:
 - The incremental construction of space-filling designs, based on the algorithms presented in the book:
   "T. Karvonen, L. Pronzato, A. Zhigljavsky: Space-Filling Design and Kernels: Theory and Algorithms, Springer, 2026."
 - The evaluation of various space-filling performance criteria for a given design.
+  
 
 ---
 
