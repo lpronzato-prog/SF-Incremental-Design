@@ -8,10 +8,10 @@ This repository provides MATLAB implementations for:
 
 ---
 
-## Examples in a cube [0,1]^d (Chap. 6)
+## Examples in a cube $[0,1]^d$ (Chap. 6)
 The repository includes two main scripts to demonstrate the usage of the provided functions:
-- `Examples_generation_cube.m`: Examples of design constructions in the hypercube [0,1]^d;
-- `Examples_performance_cube.m`: Examples of performance evaluation for designs in [0,1]^d.
+- `Examples_generation_cube.m`: Examples of design constructions in the hypercube $[0,1]^d$;
+- `Examples_performance_cube.m`: Examples of performance evaluation for designs in $[0,1]^d$.
 
 The directory `design_generation/` contains MATLAB functions for generating designs;
 the directory `design_performance/` contains MATLAB functions for evaluating the performance of a given design.
@@ -30,12 +30,12 @@ The directory `high_d/` contains examples and MATLAB functions for constructing 
 - **Fractional Factorial Design:**
   - `Example_fractional_factorial.m`: Example of construction of a fractional factorial design with **large** (if not maximum) **packing radius**.
 
-- **Random Designs with small L_s-Mean Quantization Error:**
-  - `Example_random_designs_ball_and_cube`: Example of construction of n-point random designs **with small L_s-mean quantization error** of the uniform measure in a ball or a cube.
-    - In the **unit ball** B_d(0,1): the design points are uniformly distributed in a ball B_d(0,R), or on a sphere S_{d-1}(0,r) (Section 7.1.4 of [Karvonen, Pronzato and Zhigljavsky, Springer, 2026]).
-    - In the **cube** [-1,1]^d: the design points are uniformly distributed in a cube [-delta_1,delta_1]^d, or are sampled from the vertices of a (smaller) cube [-delta_0,delta_0]^d (Section 7.2 of [Karvonen, Pronzato and Zhigljavsky, Springer, 2026]).
+- **Random Designs with small $L_s$-Mean Quantization Error:**
+  - `Example_random_designs_ball_and_cube`: Example of construction of $n$-point random designs **with small $L_s$-mean quantization error** of the uniform measure in a $d$-dimensional ball or cube.
+    - In the **unit ball** $B_d(0,1)$: the design points are uniformly distributed in a ball $B_d(0,r_1)$, or on a sphere $S_{d-1}(0,r_0)$ (Section 7.1.4 of [Karvonen, Pronzato and Zhigljavsky, Springer, 2026]).
+    - In the **cube** $[-1,1]^d$: the design points are uniformly distributed in a cube $[-\delta_1,\delta_1]^d$, or are sampled from the vertices of a (smaller) cube $[-\delta_0,\delta_0]^d$ (Section 7.2 of [Karvonen, Pronzato and Zhigljavsky, Springer, 2026]).
 
-All `.m` files required to determine the **optimal values** of R, r, delta_1, and delta_0 as functions of d, n, and s are contained in the directory `high_d/`.
+All `.m` files required to determine the **optimal values** of $r_1$, $r_0$, $\delta_1$, and $\delta_0$ as functions of $d$, $n$, and $s$ are contained in the directory `high_d/`.
   
 ---
 
