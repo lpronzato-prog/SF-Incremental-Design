@@ -29,3 +29,7 @@ VB=Dist_pattern(2:d+1); rho_H=find(VB>0,1)
 % Results for this generators:
 [ X, Gen, Dist_pattern, WLP ]= greedy_generators( d,m,Gen,0,0,1);
 Gen, Dist_pattern, WLP
+
+%% Generators expressed using the notation with Latin alphabet
+[Gen_letters] = generators(Gen);
+disp(Gen_letters)
